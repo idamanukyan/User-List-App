@@ -3,6 +3,15 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt") version "1.5.30"
+}
+
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31") {
+            exclude(module = "kotlin-compiler-embeddable")
+        }
+    }
 }
 
 android {
@@ -71,6 +80,8 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.0.5")
     implementation("androidx.compose.ui:ui-tooling-preview:1.0.5")
     implementation("com.google.dagger:hilt-android:2.38.1")
+    implementation ("com.google.dagger:hilt-android:2.37")
+    kapt ("com.google.dagger:hilt-android-compiler:2.37"   )
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -78,5 +89,4 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    kapt("com.google.dagger:hilt-compiler:2.38.1")
 }
